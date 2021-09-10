@@ -1,0 +1,14 @@
+{
+    "single_end_libs": [],
+    "srr_ids": [
+	"SRR15809157"
+    ],
+    "gene_set_type": "predefined_list",
+    "gene_set_fasta": "",
+    "gene_set_feature_group": "",
+    "output_file": "sars-map",
+    "output_path": "/olson@patricbrc.org/home/test",
+    "srr_libs": [],
+    "paired_end_libs": [],
+    "gene_set_name": "CARD"
+}

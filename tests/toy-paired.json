@@ -1,0 +1,17 @@
+{
+    "single_end_libs": [],
+    "srr_ids": [],
+    "gene_set_type": "predefined_list",
+    "gene_set_fasta": "",
+    "gene_set_feature_group": "",
+    "output_file": "mapping-toy-pe",
+    "srr_libs": [],
+    "output_path": "/olson@patricbrc.org/home/test",
+    "paired_end_libs": [
+	{
+	    "read2": "/olson@patricbrc.org/PATRIC-QA/applications/App-MetagenomicReadMapping/data/toy2.fq",
+	    "read1": "/olson@patricbrc.org/PATRIC-QA/applications/App-MetagenomicReadMapping/data/toy1.fq"
+	}
+    ],
+    "gene_set_name": "CARD"
+}
