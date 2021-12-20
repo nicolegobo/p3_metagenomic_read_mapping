@@ -25,7 +25,7 @@
       "label": "Gene set name",
       "type": "enum",
       "enum": [
-        "MLST",
+        "VFDB",
         "CARD"
       ],
       "id": "gene_set_name"
