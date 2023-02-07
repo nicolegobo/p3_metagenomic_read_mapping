@@ -24,9 +24,10 @@ sub write_report
     my($task_id, $params, $output_base, $output_fh) = @_;
 
     my $templ = Template->new(ABSOLUTE => 1);
-    my $tax_base = 'https://www.patricbrc.org/view/Taxonomy';
-    my $genome_base = 'https://www.patricbrc.org/view/GenomeList';
-    my $special_genes_base = 'https://www.patricbrc.org/view/SpecialtyGeneList';
+    my $tax_base = 'https://www.bv-brc.org/view/Taxonomy';
+    my $genome_base = 'https://www.bv-brc.org/view/GenomeList';
+    my $special_genes_base = 'https://www.bv-brc.org/view/SpecialtyGeneList';
+    my $feature_group_base = 'https://www.bv-brc.org/view/Feature';
 
     my @res;
     my @res_hdr;
@@ -50,20 +51,26 @@ sub write_report
 	    my $glink;
 	    my $id = $key;
 	    if ($key =~ s/^(\S+)\s+//)
+        # defines the template column
 	    {
 		$id = $1;
-		if ($id =~ /(CARD|VFDB)\|(.*)/)
-		{
-		    $link = "$special_genes_base/?eq(source_id,$2)";
-		}
+        if ($id =~ /(CARD|VFDB)\|(.*)/)
+    	{
+    	    $link = "$special_genes_base/?eq(source_id,$2)";
+    	}
+      	elsif ($id =~ /fig\|(.*)/)
+      	{
+	    $link = "$feature_group_base/$id";
+      	}
 		if ($key =~ /^\s*(.*)\s+\[([^]]+)\]$/)
+		# defines function and genome
 		{
-		    $function = $1;
-		    $genome = $2;
-		    $glink = "$genome_base/?eq(genome_name," . uri_escape($genome) . ")";
+	    $function = $1;
+	    $genome = $2;
+	    $glink = "$genome_base/?eq(genome_name," . uri_escape($genome) . ")";
 		}
 	    }
-	    
+
 	    push(@$row,
 	     { key => $id, link => $link },
 	     { key => $function },
@@ -83,9 +90,7 @@ sub write_report
     my $mod_path = Module::Metadata->find_module_by_name(__PACKAGE__);
     my $tt_file = dirname($mod_path) . "/MetagenomicReadMappingReport.tt";
     $templ->process($tt_file, $vars, $output_fh) || die "Error processing template: " . $templ->error();
-    
+
 }
 
 1;
-
-

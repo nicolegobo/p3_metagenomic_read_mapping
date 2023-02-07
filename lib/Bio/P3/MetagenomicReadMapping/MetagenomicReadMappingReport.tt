@@ -5,7 +5,7 @@
 Single-end libraries:
 <ul>
 [% FOR se IN params.single_end_libs %]
-<li> <a target="_blank" href="https://www.patricbrc.org/workspace[% se.read %]">[% se.read %]</a>
+<li> <a target="_blank" href="https://www.bv-brc.org/workspace[% se.read %]">[% se.read %]</a>
 [% END -%]
 </ul>
 <p>
@@ -15,8 +15,8 @@ Single-end libraries:
 Paired-end libraries:
 <ul>
 [% FOR pe IN params.paired_end_libs -%]
-<li> <a target="_blank" href="https://www.patricbrc.org/workspace[% pe.read1 %]">[% pe.read1 %]</a>,
- <a target="_blank" href="https://www.patricbrc.org/workspace[% pe.read2 %]">[% pe.read2 %]</a>
+<li> <a target="_blank" href="https://www.bv-brc.org/workspace[% pe.read1 %]">[% pe.read1 %]</a>,
+ <a target="_blank" href="https://www.bv-brc.org/workspace[% pe.read2 %]">[% pe.read2 %]</a>
 [% END -%]
 </ul>
 <p>
@@ -34,13 +34,13 @@ SRA libraries:
 <p>
 <h2>Results</h2>
 
-The table below shows results from read mapping 
+The table below shows results from read mapping
 [% IF params.gene_set_type == "predefined_list" -%]
 against the selected template database [% params.gene_set_name %]
 [% END -%]
-using 
-<a target="_blank" href="https://bitbucket.org/genomicepidemiology/kma">KMA</a> 
-(<a target="_blank" href="https://www.ncbi.nlm.nih.gov/pubmed/30157759">reference</a>).  
+using
+<a target="_blank" href="https://bitbucket.org/genomicepidemiology/kma">KMA</a>
+(<a target="_blank" href="https://www.ncbi.nlm.nih.gov/pubmed/30157759">reference</a>).
 The matching
 reference genes are shown as <i>Template</i> and the input reads are shown
 as <i>Query</i>. The table provides a summary of the most common statistics for
@@ -72,8 +72,8 @@ each mapped template.
 The columns are as follows:
 <ol>
 <li> Template: Identifier of the template (reference gene) sequence that match the query reads
-<li> Function: Template gene function
-<li> Genome: Genome that contains template gene
+<li> Function: Template gene function if reads are mapped against a BV-BRC feature group, fasta file downloaded on BV-BRC, and predefined datasets.
+<li> Genome: Genome that contains template gene if reads are mapped against a BV-BRC feature group, fasta file downloaded on BV-BRC, and predefined datasets.
 <li> Score: Global alignment score of the template
 <li> Expected: Expected alignment score if all mapping reads where smeared over all templates in the database
 <li> Template length: Template gene length in nucleotides
