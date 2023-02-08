@@ -50,6 +50,7 @@ sub write_report
 	    my $genome;
 	    my $glink;
 	    my $id = $key;
+
 	    if ($key =~ s/^(\S+)\s+//)
         # defines the template column
 	    {
@@ -60,7 +61,13 @@ sub write_report
     	}
       	elsif ($id =~ /fig\|(.*)/)
       	{
-	    $link = "$feature_group_base/$id";
+			if ($id=~ /\|$/)
+			{
+			# remove the line character at the end of patric id 
+			$id=~ s/\|$//;
+			#print STDERR "THIS matched and this IS THE id $id";
+			}
+			$link = "$feature_group_base/$id";
       	}
 		if ($key =~ /^\s*(.*)\s+\[([^]]+)\]$/)
 		# defines function and genome
