@@ -68,26 +68,34 @@ sub run
     my @cmd;
     my $db_dir;
 
-    if ($params->{gene_set_type} ne 'predefined_list' and $params->{gene_set_type} ne 'feature_group' and $params->{gene_set_type} ne 'fasta_file')
+    if ($params->{gene_set_type} ne 'predefined_list' and
+	$params->{gene_set_type} ne 'feature_group' and
+	$params->{gene_set_type} ne 'fasta_file')
     {
 	    die "Gene set type $params->{gene_set_type} not supported";
     }
 
     if ($params->{gene_set_type} eq 'predefined_list')
     {
-      my %db_map = (CARD => '/home/nbowers/2023_dbs/CARD/card',
-	                VFDB => '/home/nbowers/2023_dbs/VFDB/vfdb');
+	# my %db_map = (CARD => '/home/nbowers/2023_dbs/CARD/card',
+	# VFDB => '/home/nbowers/2023_dbs/VFDB/vfdb');
 
-      #my %db_map = (CARD => 'CARD',
-  		              #VFDB => 'VFDB');
+	my %db_map = (CARD => 'CARD',
+		      VFDB => 'VFDB');
 
-      $db_dir = $db_map{$params->{gene_set_name}};
-      if (!$db_dir)
-      {
-	       die "Invalid gene set name '$params->{gene_set_name}' specified. Valid values are " . join(", ", map { qq("$_") } keys %db_map);
-       }
+	$db_dir = $db_map{$params->{gene_set_name}};
+
+	if (!$db_dir)
+	{
+	    die "Invalid gene set name '$params->{gene_set_name}' specified. Valid values are " . join(", ", map { qq("$_") } keys %db_map);
+	}
+
+	if ($db_dir !~ m,^/,)
+	{
+	    $db_dir = kma_db . "/$db_dir";
+	}
     }
-
+    
     if($params->{gene_set_type} eq 'fasta_file')
     {
       # load the input fasta file from workspace
