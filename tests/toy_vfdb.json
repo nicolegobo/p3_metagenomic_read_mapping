@@ -10,7 +10,7 @@
     "paired_end_libs": [
       {
         "read2": "/ARWattam@patricbrc.org/MOOC PATRIC Course/Assembly/MOOC_test_2.fastq",
-        "read1": "/ARWattam@patricbrc.org/MOOC PATRIC Course/Assembly/MOOC_test_1.fastq",
+        "read1": "/ARWattam@patricbrc.org/MOOC PATRIC Course/Assembly/MOOC_test_1.fastq"
         }
     ],
     "gene_set_name": "VFDB"
