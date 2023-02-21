@@ -78,7 +78,7 @@ sub run
     if ($params->{gene_set_type} eq 'predefined_list')
     {
       my %db_map = (CARD => 'CARD',
-  		              VFDB => 'VFDB');
+  		    VFDB => 'VFDB');
 	$db_dir = $db_map{$params->{gene_set_name}};
 
 	if (!$db_dir)
