@@ -75,11 +75,11 @@ The columns are as follows:
 <li> Function: Template gene function if reads are mapped against a BV-BRC feature group, fasta file downloaded on BV-BRC, and predefined datasets.
 <li> Genome: Genome that contains template gene if reads are mapped against a BV-BRC feature group, fasta file downloaded on BV-BRC, and predefined datasets.
 <li> Score: Global alignment score of the template
-<li> Expected: Expected alignment score if all mapping reads where smeared over all templates in the database
+<li> Expected: Expected alignment score if all mapping reads were smeared over all templates in the database
 <li> Template length: Template gene length in nucleotides
-<li> Template Identity: Percent identity between the query and template sequence, over the length of the matching query sequence
+<li> Template Identity: Percent identity between the query and template sequence, over the length of the matching template sequence
 <li> Template Coverage: Percent of the template that is covered by the query
-<li> Query Identity: Percent identity between the query and template sequence, over the length of the matching query sequence
+<li> Query Identity: Percent identity between the query and template sequence, over the length of the matching template sequence
 <li> Query Coverage: Length of the matching query sequnce divided by the template length
 <li> Depth: Number of times the template has been covered by the query.
 <li> q value: Quantile from McNemars test, to test whether the current template is a significant hit.
