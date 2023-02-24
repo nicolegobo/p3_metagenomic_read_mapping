@@ -25,7 +25,8 @@ sub write_report
 
     my $templ = Template->new(ABSOLUTE => 1);
     my $tax_base = 'https://www.bv-brc.org/view/Taxonomy';
-    my $genome_base = 'https://www.bv-brc.org/view/GenomeList';
+    #my $genome_base = 'https://www.bv-brc.org/view/GenomeList';
+	my $genome_base;
     my $special_genes_base = 'https://www.bv-brc.org/view/SpecialtyGeneList';
     my $feature_group_base = 'https://www.bv-brc.org/view/Feature';
 
@@ -47,35 +48,43 @@ sub write_report
 	    my $key = shift @val;
 	    my $link;
 	    my $function;
+		my $rest;
+		my $gid;
+		my $genome_name;
 	    my $genome;
 	    my $glink;
 	    my $id = $key;
-
 	    if ($key =~ s/^(\S+)\s+//)
         # defines the template column
 	    {
 		$id = $1;
-        if ($id =~ /(CARD|VFDB)\|(.*)/)
-    	{
-    	    $link = "$special_genes_base/?eq(source_id,$2)";
-    	}
-      	elsif ($id =~ /fig\|(.*)/)
-      	{
-			if ($id=~ /\|$/)
-			{
-			# remove the line character at the end of patric id 
-			$id=~ s/\|$//;
-			#print STDERR "THIS matched and this IS THE id $id";
-			}
-			$link = "$feature_group_base/$id";
-      	}
 		if ($key =~ /^\s*(.*)\s+\[([^]]+)\]$/)
 		# defines function and genome
 		{
-	    $function = $1;
-	    $genome = $2;
-	    $glink = "$genome_base/?eq(genome_name," . uri_escape($genome) . ")";
+			$function = $1;
+			$genome = $2;
 		}
+        if ($id =~ /(CARD|VFDB)\|(.*)/)
+			{
+				$link = "$special_genes_base/?eq(source_id,$2)";
+				$genome_base = 'https://www.bv-brc.org/view/GenomeList';
+				$glink = "$genome_base/?eq(genome_name," . uri_escape($genome) . ")";
+			}
+      	elsif ($id =~ /fig\|(.*)/)
+			{	
+				# works but splits on the bar character
+				$genome =~ /(.+)\s\|\s(.+)/;
+				$genome_name = $1;
+				$gid = $2;
+				$genome_base = 'https://www.bv-brc.org/view/Genome';
+				$glink = "$genome_base/$gid";
+				if ($id=~ /\|$/)
+				{
+				# remove the line character at the end of patric id 
+				$id=~ s/\|$//;
+				}
+				$link = "$feature_group_base/$id";
+			}
 	    }
 
 	    push(@$row,
