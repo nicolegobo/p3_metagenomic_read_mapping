@@ -6,8 +6,8 @@
     "gene_set_type": "predefined_list",
     "gene_set_fasta": "",
     "gene_set_feature_group": "",
-    "output_file": "CARD_SRR",
-    "output_path": "/nbowers@bvbrc/metagenomic_read_mapping_jan_25_2023/2_7_2023",
+    "output_file": "mapping_toy_CARD_SRR",
+    "output_path": "/olson@patricbrc.org/home/test",
     "srr_libs": [],
     "paired_end_libs": [],
     "gene_set_name": "CARD"

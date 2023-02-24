@@ -2,15 +2,15 @@
   "single_end_libs": [],
   "srr_ids": [],
   "gene_set_type": "fasta_file",
-  "gene_set_fasta": "/nbowers@bvbrc/metagenomic_read_mapping_jan_25_2023/5170_features.fasta",
+  "gene_set_fasta": "/olson@patricbrc.org/PATRIC-QA/applications/App-MetagenomicReadMapping/data/5170_features.fasta",
   "gene_set_feature_group": "",
-  "output_file": "5170_fasta_internal",
-  "output_path": "/nbowers@bvbrc/metagenomic_read_mapping_jan_25_2023/2_7_2023",
+  "output_file": "mapping_toy_fasta_internal",
+  "output_path": "/olson@patricbrc.org/home/test",
   "srr_libs": [],
   "paired_end_libs": [
     {
-    "read2": "/ARWattam@patricbrc.org/MOOC PATRIC Course/Assembly/MOOC_test_2.fastq",
-    "read1": "/ARWattam@patricbrc.org/MOOC PATRIC Course/Assembly/MOOC_test_1.fastq"
+      "read2": "/olson@patricbrc.org/PATRIC-QA/applications/App-MetagenomicReadMapping/data/MOOC_test_2.fastq",
+      "read1": "/olson@patricbrc.org/PATRIC-QA/applications/App-MetagenomicReadMapping/data/MOOC_test_1.fastq",
     }
   ],
   "gene_set_name": "fasta_file"
