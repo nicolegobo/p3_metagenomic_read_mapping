@@ -6,14 +6,14 @@ Created on Thu Jan  5 16:39:55 2023
 @author: nbowers
 This is a script that formats the headers from the FASTAs for the CARD and VFDB
 to match previous headers used by the current codebase for the BV-BRC.org
-##### Add descriptions for each commmand #####
+See README.md for example commands.
 """
 
 import click
 import glob
 import os
 import pandas as pd
-
+import sys
 
 
 def parse_card_json(data): # card_output):
@@ -59,7 +59,6 @@ def edit_vfdb_headers(vfdb_raw_data_dir):
     return lines
 
 
-
 def op_json(raw_data_dir):
     card_json = glob.glob(os.path.join(raw_data_dir,'card.json'))[0]
     assert os.path.exists(card_json)
@@ -80,15 +79,32 @@ def run_kma_index(ref_fasta, database_name):
     os.system('kma index -i {} -o {}'.format(ref_fasta, database_name))
     return
 
+
 def map_to_kma_database(database_name, output, input_type, input_fastqs):
+    file_type = ''
     if not os.path.exists(output):
         os.makedirs(output)
-    if input_type == 'paired_read_lib':
-        type = '-ipe'
-    if input_type == 'single_read_lib':
-        type = '-i'
+    if input_type == 'paired':
+        file_type = '-ipe'
+    elif input_type == 'single':
+        file_type = '-i'
+    else: 
+        msg = f"invalid input type selection: {file_type} \n valid options are 'paired'or 'single'."
+        sys.stderr.write(msg)
+        sys.exit(1)
+    # check FASTQs
+    for fq in input_fastqs:
+        if os.path.isfile(fq) == True:
+            pass
+        else:
+            msg = f"Input fastq file does not exisit: {fq} \n."
+            sys.stderr.write(msg)
+            sys.exit(1)
+     # add a space between paired files
     input_fastqs = ' '.join(input_fastqs)
-    os.system('kma -ID 70 -t_db {} {} {} -o {}'.format(database_name, type, input_fastqs.values(), output))
+    msg ='kma -ID 70 -t_db {} {} {} -o {}'.format(database_name, file_type, input_fastqs, output)
+    sys.stderr.write(msg)
+    os.system('kma -ID 70 -t_db {} {} {} -o {}'.format(database_name, file_type, input_fastqs, output))
 
 
 @click.group()
@@ -121,7 +137,7 @@ def create_kma_database(ref_fasta, database_name):
 @main.command()
 @click.argument('database_name', type=str, required=True)
 @click.argument('output', type=click.Path())
-@click.option('--input_type', type=click.Choice(['paired_end_libs', 'single_end_libs'], case_sensitive=False))
+@click.option('--input_type', type=click.Choice(['paired', 'single'], case_sensitive=False))
 @click.argument('input_fastqs', nargs =-1, type=click.Path(exists=True))
 
 def map_reads_to_database(database_name, output, input_type, input_fastqs):
