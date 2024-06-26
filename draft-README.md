@@ -18,6 +18,7 @@ This module provides the following application specfication(s):
 
 ## See also
 
+* [Metagenomic Read Mapping Service Quick Reference](https://www.bv-brc.org/docs/quick_references/services/metagenomic_read_mapping_service.html)
   * [Metagenomic Read Mapping Service](https://www.bv-brc.org/docs/https://bv-brc.org/app/MetagenomicReadMapping.html)
   * [Metagenomic Read Mapping Service Tutorial](https://www.bv-brc.org/docs//tutorial/metagenomic_read_mapping/metagenomic_read_mapping.html)
 
