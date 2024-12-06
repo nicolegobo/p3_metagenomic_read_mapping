@@ -192,6 +192,7 @@ sub run
       push(@cmd,
           "-ID", $kma_identity,
           "-t_db", $db_dir,
+          "-ef",
           @input_params,
           "-o", $output_base);
     #
