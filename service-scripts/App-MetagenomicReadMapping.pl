@@ -287,14 +287,19 @@ sub save_output_files
 {
     my($app, $output) = @_;
 
-    my %suffix_map = (fastq => 'reads',
+    my %suffix_map = (
+          aln => 'txt',
+          err => 'txt',
+          fastq => 'reads',
 		      fss => 'feature_dna_fasta',
-		      res => 'txt',
-		      aln => 'txt',
-		      txt => 'txt',
-		      out => 'txt',
-		      err => 'txt',
-		      html => 'html');
+          fsa => 'feature_dna_fasta',
+          gz => 'z',
+          html => 'html',
+          mapstat => 'tsv',
+          out => 'txt',
+		      res => 'tsv',
+		      txt => 'txt'
+		      );
 
     #
     # Make a pass over the folder and compress any fastq files.
